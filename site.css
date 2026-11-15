@@ -264,3 +264,11 @@ figcaption { font-size: var(--fs-sm); color: var(--muted); }
 .book-hint { font-size: var(--fs-sm); color: var(--muted); margin: 12px 0 0; text-align: center; }
 @media (prefers-reduced-motion: reduce) { .js .book .spread, .js .book .spread.is-active, .js .book .spread.is-before { transition: opacity 0.2s linear; transform: none; } }
 @media (max-width: 560px) { .book { margin-left: 0; margin-right: 0; } }
+.book-nav { flex-wrap: wrap; }
+.book-pager { display: flex; align-items: center; gap: 16px; }
+.book-expand { font: inherit; font-size: var(--fs-sm); color: var(--fg); background: transparent; border: 1px solid var(--fg); border-radius: 999px; padding: 6px 16px; cursor: pointer; transition: background-color 0.3s var(--ease), color 0.3s var(--ease); }
+.book-expand:hover, .book-expand[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
+.book.is-expanded .book-stage { display: flex !important; flex-direction: column; gap: 56px; perspective: none; }
+.book.is-expanded .spread { position: static; grid-area: auto; opacity: 1 !important; transform: none !important; visibility: visible !important; pointer-events: auto; transition: none !important; }
+.book.is-expanded .book-pager, .book.is-expanded .book-hint { display: none; }
+.book.is-expanded .book-nav { justify-content: flex-end; }

@@ -214,6 +214,15 @@
       startX = null;
       if (Math.abs(dx) > 40) show(i + (dx < 0 ? 1 : -1));
     });
+    var expand = book.querySelector('[data-expand]');
+    expand.addEventListener('click', function () {
+      var on = !book.classList.contains('is-expanded');
+      book.classList.toggle('is-expanded', on);
+      expand.setAttribute('aria-pressed', on ? 'true' : 'false');
+      expand.textContent = on ? 'Back to book view' : 'Show all spreads';
+      slides.forEach(function (s) { s.setAttribute('aria-hidden', 'false'); });
+      if (!on) show(i);
+    });
     show(0);
   });
 })();
