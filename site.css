@@ -285,3 +285,6 @@ figcaption { font-size: var(--fs-sm); color: var(--muted); }
 /* Better Bonds: slightly smaller body text and smaller source lines */
 .prose.compact p { font-size: 0.95rem; }
 .prose .source { font-size: 0.8125rem; color: var(--muted); margin-top: -0.4em; }
+.prose.compact blockquote.feature + blockquote.feature { margin-top: 12px; }
+.prose.compact blockquote.feature strong { color: #0f62fe; }
+[data-theme="dark"] .prose.compact blockquote.feature strong { color: #78a9ff; }
