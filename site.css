@@ -59,6 +59,8 @@ h1, h2, h3 { font-family: var(--font); margin: 0; line-height: 1.25; }
 .js .intro.in .mark { background-size: 100% 1px; }
 .mark { color: #0f62fe; }
 [data-theme="dark"] .mark { color: #78a9ff; }
+.mark-green { color: #198038; }
+[data-theme="dark"] .mark-green { color: #42be65; }
 .js .intro .fade { opacity: 0; transform: translateY(12px); transition: opacity 800ms var(--ease) var(--d, 0s), transform 800ms var(--ease) var(--d, 0s); }
 .js .intro.in .fade { opacity: 1; transform: none; }
 
