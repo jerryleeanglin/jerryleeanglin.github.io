@@ -59,9 +59,65 @@
     toast.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span class="toast-msg"></span>';
     document.body.appendChild(toast);
     var msg = toast.querySelector('.toast-msg'), toastTimer;
+    // Luminance (0 = black, 1 = white) of whatever sits under the toast.
+    // Samples a row of points across the toast. Images are read from a small canvas;
+    // other elements use their background colour, falling back to the page background.
+    var lumOf = function (r, g, b) { return (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255; };
+    var parseRgb = function (str) {
+      var m = str && str.match(/rgba?\(([^)]+)\)/);
+      if (!m) return null;
+      var p = m[1].split(/[ ,\/]+/).filter(Boolean).map(Number);
+      if (p.length >= 4 && p[3] === 0) return null;
+      return p;
+    };
+    var imgCanvas = function (img) {
+      try {
+        var c = document.createElement('canvas'), size = 40;
+        c.width = size; c.height = size;
+        var ctx = c.getContext('2d');
+        ctx.drawImage(img, 0, 0, size, size);
+        return { ctx: ctx, size: size };
+      } catch (err) { return null; }
+    };
+    var sampleUnder = function (x, y, rect) {
+      var stack = document.elementsFromPoint(x, y);
+      for (var i = 0; i < stack.length; i++) {
+        var el = stack[i];
+        if (el === toast || toast.contains(el)) continue;
+        if (el.tagName === 'IMG' && el.complete && el.naturalWidth) {
+          var ir = el.getBoundingClientRect();
+          var c = imgCanvas(el);
+          if (c) {
+            var px = Math.min(c.size - 1, Math.max(0, Math.floor((x - ir.left) / ir.width * c.size)));
+            var py = Math.min(c.size - 1, Math.max(0, Math.floor((y - ir.top) / ir.height * c.size)));
+            var d = c.ctx.getImageData(px, py, 1, 1).data;
+            return lumOf(d[0], d[1], d[2]);
+          }
+        }
+        var rgb = parseRgb(getComputedStyle(el).backgroundColor);
+        if (rgb) return lumOf(rgb[0], rgb[1], rgb[2]);
+      }
+      var base = parseRgb(getComputedStyle(document.body).backgroundColor) || [255, 255, 255];
+      return lumOf(base[0], base[1], base[2]);
+    };
+    var pickToastTone = function () {
+      var r = toast.getBoundingClientRect(), total = 0, n = 0;
+      toast.style.visibility = 'hidden';
+      for (var i = 1; i <= 5; i++) {
+        for (var j = 0; j < 2; j++) {
+          total += sampleUnder(r.left + r.width * i / 6, r.top + r.height * (j ? 0.25 : 0.75), r);
+          n++;
+        }
+      }
+      toast.style.visibility = '';
+      var avg = total / n;
+      // Light content behind: dark toast. Dark content behind: light toast.
+      toast.classList.toggle('on-dark', avg < 0.5);
+    };
     var showToast = function () {
       msg.textContent = '';
       clearTimeout(toastTimer);
+      try { pickToastTone(); } catch (err) { toast.classList.remove('on-dark'); }
       toast.classList.add('show');
       setTimeout(function () { msg.textContent = 'This project is restricted.'; }, 60);
       toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 3600);
