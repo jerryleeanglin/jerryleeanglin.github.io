@@ -291,6 +291,6 @@ figcaption { font-size: var(--fs-sm); color: var(--muted); }
 /* Restricted project lock: flashes red and shakes on hover */
 @keyframes lock-shake { 0%,100% { transform: translate(0,0) rotate(0); } 20% { transform: translate(-2px,0) rotate(-8deg); } 40% { transform: translate(2px,0) rotate(8deg); } 60% { transform: translate(-2px,0) rotate(-5deg); } 80% { transform: translate(2px,0) rotate(5deg); } }
 @keyframes lock-flash { 0%,100% { color: #da1e28; } 50% { color: inherit; } }
-.arrow.lock { display: inline-block; }
-.post-link[data-restricted]:hover .arrow.lock, .post-link[data-restricted]:focus-visible .arrow.lock { animation: lock-shake 0.45s ease-in-out infinite, lock-flash 0.45s steps(1, end) infinite; }
-@media (prefers-reduced-motion: reduce) { .post-link[data-restricted]:hover .arrow.lock { animation: none; color: #da1e28; } }
+.arrow.lock { display: inline-block; color: #da1e28; }
+.post-link[data-restricted]:hover .arrow.lock, .post-link[data-restricted]:focus-visible .arrow.lock, .post-link[data-restricted].is-angry .arrow.lock { animation: lock-shake 0.45s ease-in-out infinite, lock-flash 0.45s steps(1, end) infinite; }
+@media (prefers-reduced-motion: reduce) { .post-link[data-restricted]:hover .arrow.lock, .post-link[data-restricted].is-angry .arrow.lock { animation: none; } }

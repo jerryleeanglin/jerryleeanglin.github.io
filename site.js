@@ -131,6 +131,9 @@
     postLinks.forEach(function (a) {
       a.addEventListener('click', function (e) {
         e.preventDefault();
+        a.classList.add('is-angry');
+        clearTimeout(a._angry);
+        a._angry = setTimeout(function () { a.classList.remove('is-angry'); }, 1200);
         showToast();
       });
     });
