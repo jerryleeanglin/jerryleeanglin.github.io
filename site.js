@@ -112,10 +112,10 @@
       }
       toast.style.visibility = '';
       var share = dark / n;
-      // If more than 70% of the toast sits on one shade, follow that shade:
+      // If more than 80% of the toast sits on one shade, follow that shade:
       // dark behind -> light toast, light behind -> dark toast.
       // Otherwise the majority decides.
-      var onDark = share > 0.7 ? true : (1 - share > 0.7 ? false : share >= 0.5);
+      var onDark = share > 0.8 ? true : (1 - share > 0.8 ? false : share >= 0.5);
       toast.classList.toggle('on-dark', onDark);
     };
     var showToast = function () {
