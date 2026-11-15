@@ -187,6 +187,9 @@ figcaption { font-size: var(--fs-sm); color: var(--muted); }
 .prose h3 { font-size: var(--fs-h3); font-weight: 600; margin: 40px 0 10px; }
 .prose ul, .prose ol { padding-left: 1.25em; margin: 0 0 1.2em; }
 .prose li { margin-bottom: 0.45em; }
+.prose p { margin: 0 0 1.35em; line-height: 1.75; }
+.prose .split-text p:last-child, .prose blockquote.feature p:last-child { margin-bottom: 0; }
+.prose ul { margin-bottom: 1.5em; }
 .prose hr { border: 0; border-top: 1px solid var(--line); margin: 64px 0; }
 .prose a { text-decoration: underline; text-underline-offset: 3px; }
 .prose code { font-size: 0.9em; background: var(--tint); padding: 1px 6px; border-radius: 6px; }
