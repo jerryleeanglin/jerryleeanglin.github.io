@@ -101,18 +101,22 @@
       return lumOf(base[0], base[1], base[2]);
     };
     var pickToastTone = function () {
-      var r = toast.getBoundingClientRect(), total = 0, n = 0;
+      var r = toast.getBoundingClientRect(), dark = 0, n = 0;
       toast.style.visibility = 'hidden';
-      for (var i = 1; i <= 5; i++) {
+      // 10 columns x 2 rows across the toast; a sample under 0.5 luminance counts as dark
+      for (var i = 1; i <= 10; i++) {
         for (var j = 0; j < 2; j++) {
-          total += sampleUnder(r.left + r.width * i / 6, r.top + r.height * (j ? 0.25 : 0.75), r);
+          if (sampleUnder(r.left + r.width * i / 11, r.top + r.height * (j ? 0.25 : 0.75), r) < 0.5) dark++;
           n++;
         }
       }
       toast.style.visibility = '';
-      var avg = total / n;
-      // Light content behind: dark toast. Dark content behind: light toast.
-      toast.classList.toggle('on-dark', avg < 0.5);
+      var share = dark / n;
+      // If more than 70% of the toast sits on one shade, follow that shade:
+      // dark behind -> light toast, light behind -> dark toast.
+      // Otherwise the majority decides.
+      var onDark = share > 0.7 ? true : (1 - share > 0.7 ? false : share >= 0.5);
+      toast.classList.toggle('on-dark', onDark);
     };
     var showToast = function () {
       msg.textContent = '';
