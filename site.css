@@ -281,4 +281,4 @@ figcaption { font-size: var(--fs-sm); color: var(--muted); }
 .book.is-expanded .book-pager, .book.is-expanded .book-hint { display: none; }
 .book.is-expanded .book-nav { justify-content: flex-end; }
 .brand { display: inline-flex; align-items: center; gap: 10px; }
-.brand-avatar { width: 36px; height: 36px; object-fit: contain; flex: none; }
+.brand-avatar { width: 48px; height: 48px; object-fit: contain; flex: none; }
