@@ -282,3 +282,6 @@ figcaption { font-size: var(--fs-sm); color: var(--muted); }
 .book.is-expanded .book-nav { justify-content: flex-end; }
 .brand { display: inline-flex; align-items: center; gap: 10px; }
 .brand-avatar { width: 48px; height: 48px; object-fit: contain; flex: none; }
+/* Better Bonds: slightly smaller body text and smaller source lines */
+.prose.compact p { font-size: 0.95rem; }
+.prose .source { font-size: 0.8125rem; color: var(--muted); margin-top: -0.4em; }
