@@ -63,7 +63,7 @@
       msg.textContent = '';
       clearTimeout(toastTimer);
       toast.classList.add('show');
-      setTimeout(function () { msg.textContent = 'This content is restricted currently.'; }, 60);
+      setTimeout(function () { msg.textContent = 'This project is restricted.'; }, 60);
       toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 3600);
     };
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') toast.classList.remove('show'); });
