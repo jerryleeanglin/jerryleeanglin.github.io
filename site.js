@@ -233,3 +233,33 @@
     show(0);
   });
 })();
+
+// Tap an image in a case study to view it larger
+(function () {
+  var overlay = null, hideTimer;
+  function close() {
+    if (!overlay) return;
+    overlay.classList.remove('show');
+    var o = overlay;
+    hideTimer = setTimeout(function () { if (o.parentNode) o.parentNode.removeChild(o); }, 260);
+    overlay = null;
+  }
+  function open(src, alt) {
+    clearTimeout(hideTimer);
+    overlay = document.createElement('div');
+    overlay.className = 'zoom-overlay';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-label', alt || 'Image');
+    var img = document.createElement('img');
+    img.src = src; img.alt = alt || '';
+    overlay.appendChild(img);
+    overlay.addEventListener('click', close);
+    document.body.appendChild(overlay);
+    requestAnimationFrame(function () { requestAnimationFrame(function () { overlay && overlay.classList.add('show'); }); });
+  }
+  document.addEventListener('click', function (e) {
+    var img = e.target.closest && e.target.closest('.prose .media img, .cs-head .media img');
+    if (img && img.complete && img.naturalWidth) { e.preventDefault(); open(img.currentSrc || img.src, img.alt); }
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+})();

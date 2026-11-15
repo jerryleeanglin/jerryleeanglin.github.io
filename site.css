@@ -294,3 +294,9 @@ figcaption { font-size: var(--fs-sm); color: var(--muted); }
 .arrow.lock { display: inline-block; color: #da1e28; }
 .post-link[data-restricted]:hover .arrow.lock, .post-link[data-restricted]:focus-visible .arrow.lock, .post-link[data-restricted].is-angry .arrow.lock { animation: lock-shake 0.45s ease-in-out infinite, lock-flash 0.45s steps(1, end) infinite; }
 @media (prefers-reduced-motion: reduce) { .post-link[data-restricted]:hover .arrow.lock, .post-link[data-restricted].is-angry .arrow.lock { animation: none; } }
+/* Tap a case study image to zoom it */
+.prose .media img, .cs-head .media img { cursor: zoom-in; }
+.zoom-overlay { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(10, 10, 10, 0.88); opacity: 0; transition: opacity 0.25s var(--ease); cursor: zoom-out; }
+.zoom-overlay.show { opacity: 1; }
+.zoom-overlay img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; background: #fff; border-radius: 6px; transform: scale(0.94); transition: transform 0.35s var(--ease); cursor: zoom-out; }
+.zoom-overlay.show img { transform: none; }
