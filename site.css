@@ -197,6 +197,11 @@ figcaption { font-size: var(--fs-sm); color: var(--muted); }
 .prose .media.is-ph .media-inner, .cs-head .media.is-ph .media-inner { height: 100%; }
 .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 48px 0; }
 .gallery figure.fig { margin: 0; }
+.prose .gallery.even .media { aspect-ratio: 4 / 3; }
+.prose .gallery.even .media-inner { height: 100%; }
+.prose .gallery.even .media img { height: 100%; object-fit: cover; object-position: 50% 40%; }
+.prose figure.fig.md { max-width: 480px; margin-left: auto; margin-right: auto; }
+.prose figure.fig.sm { max-width: 360px; margin-left: auto; margin-right: auto; }
 .cs-end { margin-top: 96px; padding: 32px 0 96px; border-top: 1px solid var(--line); }
 .next-link { display: block; text-decoration: none; font-size: var(--fs-title); font-weight: 500; line-height: 1.4; }
 .next-link span { display: block; font-size: var(--fs-sm); font-weight: 400; color: var(--muted); margin-bottom: 6px; }
