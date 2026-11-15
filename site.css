@@ -274,3 +274,5 @@ figcaption { font-size: var(--fs-sm); color: var(--muted); }
 .book.is-expanded .spread { position: static; grid-area: auto; opacity: 1 !important; transform: none !important; visibility: visible !important; pointer-events: auto; transition: none !important; }
 .book.is-expanded .book-pager, .book.is-expanded .book-hint { display: none; }
 .book.is-expanded .book-nav { justify-content: flex-end; }
+.brand { display: inline-flex; align-items: center; gap: 10px; }
+.brand-avatar { width: 28px; height: 28px; object-fit: contain; flex: none; }
