@@ -207,3 +207,29 @@ figcaption { font-size: var(--fs-sm); color: var(--muted); }
 .toast.show { opacity: 1; transform: translate(-50%, 0); }
 .toast svg { flex: none; }
 @media (prefers-reduced-motion: reduce) { .toast, .toast.show { transform: translate(-50%, 0); } }
+
+/* ---------- Image shapes and layouts ---------- */
+/* Images keep their own proportions (no cropping, no empty boxes). Placeholders keep a 16:10 shape. */
+.prose figure.fig .media, .cs-head figure.fig .media { aspect-ratio: auto; }
+.prose figure.fig .media-inner, .cs-head figure.fig .media-inner { height: auto; }
+.prose figure.fig .media img, .cs-head figure.fig .media img { height: auto; object-fit: initial; display: block; }
+.prose figure.fig .media.is-ph, .cs-head figure.fig .media.is-ph { aspect-ratio: 16 / 10; }
+.prose figure.fig .media.is-ph .media-inner, .cs-head figure.fig .media.is-ph .media-inner { height: 100%; }
+
+/* Wide: breaks out of the text column so detailed diagrams are readable */
+.prose figure.fig.wide, .split { margin-left: calc(50% - min(480px, 50vw - 24px)); margin-right: calc(50% - min(480px, 50vw - 24px)); }
+
+/* Split: text on one side, image(s) on the other */
+.split { display: grid; grid-template-columns: 5fr 6fr; gap: 32px 48px; align-items: start; margin-top: 48px; margin-bottom: 48px; }
+.split-text > :first-child { margin-top: 0; }
+.split-text > :last-child { margin-bottom: 0; }
+.split-media { display: grid; gap: 20px; }
+.split-media figure.fig { margin: 0; }
+.split-left { grid-template-columns: 6fr 5fr; }
+.split-left .split-media { order: -1; }
+.prose h2 + .split, .prose h3 + .split { margin-top: 32px; }
+@media (max-width: 760px) {
+  .split, .split-left { grid-template-columns: 1fr; margin-left: 0; margin-right: 0; }
+  .split-left .split-media { order: 0; }
+  .prose figure.fig.wide { margin-left: 0; margin-right: 0; }
+}
