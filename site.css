@@ -246,3 +246,21 @@ figcaption { font-size: var(--fs-sm); color: var(--muted); }
   .split-left .split-media { order: 0; }
   .prose figure.fig.wide { margin-left: 0; margin-right: 0; }
 }
+
+/* ===== Booklet prototype (Better Bonds) ===== */
+.book { margin: 56px calc(50% - min(480px, 50vw - 24px)) 48px; }
+.book .book-stage { display: flex; flex-direction: column; gap: 16px; outline: none; }
+.book .book-stage:focus-visible { outline: 2px solid var(--fg); outline-offset: 6px; border-radius: 4px; }
+.book .spread { margin: 0; }
+.book .spread figcaption { font-size: var(--fs-sm); color: var(--muted); margin-top: 10px; }
+.js .book .book-stage { display: grid; perspective: 1400px; }
+.js .book .spread { grid-area: 1 / 1; opacity: 0; transform: translateX(28px) rotateY(-8deg); transform-origin: left center; pointer-events: none; visibility: hidden; transition: opacity 0.5s var(--ease), transform 0.7s var(--ease), visibility 0s linear 0.7s; }
+.js .book .spread.is-before { transform: translateX(-28px) rotateY(8deg); transform-origin: right center; }
+.js .book .spread.is-active { opacity: 1; transform: none; pointer-events: auto; visibility: visible; transition: opacity 0.5s var(--ease), transform 0.7s var(--ease), visibility 0s; }
+.book-nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 20px; font-size: var(--fs-sm); color: var(--muted); font-variant-numeric: tabular-nums; }
+.book-nav button { font: inherit; font-size: var(--fs-sm); color: var(--fg); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 6px 16px; cursor: pointer; transition: border-color 0.3s var(--ease), color 0.3s var(--ease); }
+.book-nav button:hover:not(:disabled) { border-color: var(--fg); }
+.book-nav button:disabled { opacity: 0.35; cursor: default; }
+.book-hint { font-size: var(--fs-sm); color: var(--muted); margin: 12px 0 0; text-align: center; }
+@media (prefers-reduced-motion: reduce) { .js .book .spread, .js .book .spread.is-active, .js .book .spread.is-before { transition: opacity 0.2s linear; transform: none; } }
+@media (max-width: 560px) { .book { margin-left: 0; margin-right: 0; } }

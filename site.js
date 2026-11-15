@@ -178,3 +178,42 @@
     });
   }
 })();
+
+// Booklet prototype: turn pages with buttons, arrow keys or swipe
+(function () {
+  [].forEach.call(document.querySelectorAll('[data-book]'), function (book) {
+    var slides = [].slice.call(book.querySelectorAll('.spread'));
+    var stage = book.querySelector('.book-stage');
+    var count = book.querySelector('[data-count]');
+    var prev = book.querySelector('[data-prev]');
+    var next = book.querySelector('[data-next]');
+    var i = 0;
+    function show(n) {
+      n = Math.max(0, Math.min(slides.length - 1, n));
+      slides.forEach(function (s, k) {
+        s.classList.toggle('is-active', k === n);
+        s.classList.toggle('is-before', k < n);
+        s.setAttribute('aria-hidden', k === n ? 'false' : 'true');
+      });
+      i = n;
+      count.textContent = (n + 1) + ' / ' + slides.length;
+      prev.disabled = n === 0;
+      next.disabled = n === slides.length - 1;
+    }
+    prev.addEventListener('click', function () { show(i - 1); });
+    next.addEventListener('click', function () { show(i + 1); });
+    stage.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); show(i - 1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); show(i + 1); }
+    });
+    var startX = null;
+    stage.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
+    stage.addEventListener('touchend', function (e) {
+      if (startX === null) return;
+      var dx = e.changedTouches[0].clientX - startX;
+      startX = null;
+      if (Math.abs(dx) > 40) show(i + (dx < 0 ? 1 : -1));
+    });
+    show(0);
+  });
+})();
