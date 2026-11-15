@@ -288,12 +288,7 @@ figcaption { font-size: var(--fs-sm); color: var(--muted); }
 .prose.compact blockquote.feature + blockquote.feature { margin-top: 12px; }
 .prose.compact blockquote.feature strong { color: #0f62fe; }
 [data-theme="dark"] .prose.compact blockquote.feature strong { color: #78a9ff; }
-/* Restricted project lock: always red; shakes with a red glow on hover, or 3 times on tap */
-@keyframes lock-shake { 0%,100% { transform: rotate(0); } 25% { transform: rotate(-9deg); } 50% { transform: rotate(9deg); } 75% { transform: rotate(-4deg); } }
-@keyframes lock-glow { from { filter: drop-shadow(0 0 0 rgba(218,30,40,0)); } to { filter: drop-shadow(0 0 5px rgba(218,30,40,0.9)); } }
-.post-link[data-restricted] .arrow.lock,
-.post-link[data-restricted]:hover .arrow.lock { display: inline-block; color: #da1e28; transform-origin: 50% 60%; transition: none; }
-.post-link[data-restricted]:hover .arrow.lock,
-.post-link[data-restricted]:focus-visible .arrow.lock { animation: lock-shake 0.5s ease-in-out infinite, lock-glow 0.5s ease-in-out infinite alternate; }
-.post-link[data-restricted].is-angry .arrow.lock { animation: lock-shake 0.4s ease-in-out 3, lock-glow 0.4s ease-in-out 3 alternate; }
-@media (prefers-reduced-motion: reduce) { .post-link[data-restricted]:hover .arrow.lock, .post-link[data-restricted].is-angry .arrow.lock { animation: none; filter: drop-shadow(0 0 4px rgba(218,30,40,0.7)); } }
+/* Toast stays on one line */
+.toast { white-space: nowrap; }
+.toast .toast-msg { white-space: nowrap; }
+@media (max-width: 560px) { .toast { gap: 8px; padding: 10px 16px; font-size: var(--fs-sm); } }
