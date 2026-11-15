@@ -120,7 +120,7 @@ h1, h2, h3 { font-family: var(--font); margin: 0; line-height: 1.25; }
 .back:hover { color: var(--fg); }
 .cs-title { font-size: var(--fs-h1); font-weight: 500; margin-bottom: 16px; }
 .cs-lead { font-size: var(--fs-lead); color: var(--muted); margin: 20px 0 36px; }
-.notice { border: 1px solid #da1e28; padding: 12px 16px; border-radius: 12px; font-size: var(--fs-sm); color: var(--muted); margin: 0 0 32px; }
+.notice { border: 1.5px dotted #da1e28; background: var(--bg); padding: 12px 16px; border-radius: 12px; font-size: var(--fs-sm); color: var(--fg); margin: 0 0 32px; opacity: 1; }
 .facts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px 24px; margin: 40px 0 8px; padding: 24px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .facts dt { font-size: var(--fs-label); letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; font-weight: 500; }
 .facts dd { margin: 0; font-size: var(--fs-sm); }
