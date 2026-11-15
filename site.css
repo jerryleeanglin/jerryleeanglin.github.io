@@ -104,9 +104,8 @@ h1, h2, h3 { font-family: var(--font); margin: 0; line-height: 1.25; }
 .site-footer { border-top: 1px solid var(--line); padding: 8px 0 56px; font-size: var(--fs-sm); color: var(--muted); }
 .site-footer .links a { color: var(--fg); }
 .site-footer .copy { margin-top: 32px; }
-.site-footer .cta { margin: 20px 0 0; }
-.btn { display: inline-block; font: inherit; font-size: var(--fs-sm); color: var(--fg); border: 1px solid var(--fg); border-radius: 999px; padding: 8px 18px; text-decoration: none; transition: background-color 0.3s var(--ease), color 0.3s var(--ease); }
-.btn:hover { background: var(--fg); color: var(--bg); }
+.icon-link { display: inline-flex; color: var(--fg); line-height: 0; margin-top: 4px; }
+.icon-link:hover { opacity: 0.6; }
 
 /* ---------- Case study page ---------- */
 .back { display: inline-block; margin: 40px 0 32px; font-size: var(--fs-sm); color: var(--muted); text-decoration: none; transition: color 0.2s; }
