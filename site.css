@@ -112,8 +112,6 @@ h1, h2, h3 { font-family: var(--font); margin: 0; line-height: 1.25; }
 .site-footer { border-top: 1px solid var(--line); padding: 24px 0 88px; font-size: var(--fs-sm); color: var(--muted); }
 .site-footer .links a { color: var(--fg); }
 .site-footer .copy { margin-top: 32px; }
-.site-footer { transition: padding-bottom 0.6s var(--ease); }
-.site-footer.is-extended { padding-bottom: 60vh; }
 .icon-link { display: inline-flex; color: var(--fg); line-height: 0; margin-top: 4px; }
 .icon-link:hover { opacity: 0.6; }
 

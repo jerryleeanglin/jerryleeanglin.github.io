@@ -226,19 +226,3 @@
     show(0);
   });
 })();
-
-// Contact jumps to the footer and stretches it; scrolling back up returns it to normal size
-(function () {
-  var footer = document.querySelector('.site-footer');
-  if (!footer) return;
-  document.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a[href$="get-in-touch"]');
-    if (a) footer.classList.add('is-extended');
-  });
-  var lastY = window.scrollY;
-  window.addEventListener('scroll', function () {
-    var y = window.scrollY;
-    if (footer.classList.contains('is-extended') && y < lastY - 2) footer.classList.remove('is-extended');
-    lastY = y;
-  }, { passive: true });
-})();
